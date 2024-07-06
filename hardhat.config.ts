@@ -1,27 +1,16 @@
 import { HardhatUserConfig } from "hardhat/config";
+import "@openzeppelin/hardhat-upgrades"
 import "@nomicfoundation/hardhat-toolbox";
-import "@openzeppelin/hardhat-upgrades";
-
 import "hardhat-interface-generator";
+
 
 require("dotenv").config();
 
 const config: HardhatUserConfig = {
   networks: {
-    bscTestnet:{
-      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
-      chainId: 97,
-      gasPrice: 20000000000,
-      accounts: [process.env.PRIVATE_KEY as string]
-    },
-    polygonAmoy:{
-      url: "https://rpc-amoy.polygon.technology",
-      chainId: 80002,
-      accounts: [process.env.PRIVATE_KEY as string]
-    },
-    sepolia:{
-      url: "https://sepolia.infura.io/v3/",
-      chainId: 11155111,
+    RedbellyDevNet:{
+      url: "https://rbn-gcp-australia-southeast2-a-0-rh-v2.devnet.redbelly.network:8545",
+      chainId: 152,
       accounts: [process.env.PRIVATE_KEY as string]
     }
   },
@@ -42,11 +31,11 @@ const config: HardhatUserConfig = {
     },
     customChains:[
       {
-        network: "polygonAmoy",
-        chainId: 80002,
+        network: "RedbellyDevNet",
+        chainId: 152,
         urls: {
           apiURL: "https://www.oklink.com/api/explorer/v1/contract/verify/async/api/polygonAmoy",
-          browserURL: "https://www.oklink.com/polygonAmoy"
+          browserURL: "https://explorer.devnet.redbelly.network"
         },
       }
     ]

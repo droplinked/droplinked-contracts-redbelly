@@ -121,8 +121,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             expect(await nftContract.balanceOf(await shopContract.getAddress(), 1)).to.equal(1000);
         });
@@ -141,8 +140,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             await shopContract.connect(owner).mintAndRegister(
                 await nftContract.getAddress(),
@@ -156,8 +154,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             expect(await nftContract.balanceOf(await shopContract.getAddress(), 1)).to.equal(2000);
             let result: ProductStructOutput;
@@ -182,8 +179,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             expect(await nftContract.balanceOf(await shopContract.getAddress(), 1)).to.equal(1000);
             let result: ProductStructOutput;
@@ -212,8 +208,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             expect(await nftContract.balanceOf(await shopContract.getAddress(), 1)).to.equal(1000);
             const beneficiaryId = (await shopContract.getProduct(await getProductId(nftAddress, 1))).paymentInfo.beneficiaries[0];
@@ -239,8 +234,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             await shopContract.connect(firstUser).requestAffiliate(await getProductId(nftAddress, 1));
             const affiliateReq = await shopContract.affiliateRequests(0);
@@ -263,8 +257,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             await shopContract.connect(firstUser).requestAffiliate(await getProductId(nftAddress, 1));
             const affiliateReq = await shopContract.affiliateRequests(0);
@@ -287,8 +280,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             await shopContract.connect(firstUser).requestAffiliate(await getProductId(nftAddress, 1));
             await expect(shopContract.connect(firstUser).requestAffiliate(await getProductId(nftAddress, 1))).to.be.revertedWithCustomError(shopContract, "AlreadyRequested");
@@ -310,8 +302,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             await shopContract.connect(firstUser).requestAffiliate(await getProductId(nftAddress, 1));
             await shopContract.connect(owner).approveRequest(0);
@@ -332,8 +323,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             await shopContract.connect(firstUser).requestAffiliate(await getProductId(nftAddress, 1));
             await expect(shopContract.connect(secondUser).approveRequest(0)).to.be.revertedWithCustomError(shopContract, "OwnableUnauthorizedAccount");
@@ -355,8 +345,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             await shopContract.connect(firstUser).requestAffiliate(await getProductId(nftAddress, 1));
             await shopContract.connect(owner).approveRequest(0);
@@ -379,8 +368,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             await shopContract.connect(firstUser).requestAffiliate(await getProductId(nftAddress, 1));
             await shopContract.connect(owner).approveRequest(0);
@@ -403,8 +391,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.USD,
-                beneficaries,
-                false
+                beneficaries
             );
             const producerBeforeBalance = await ethers.provider.getBalance(owner);
             const droplinkedBeforeBalance = await ethers.provider.getBalance(secondUser);
@@ -432,8 +419,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             const producerBeforeBalance = await ethers.provider.getBalance(owner);
             const droplinkedBeforeBalance = await ethers.provider.getBalance(secondUser);
@@ -477,8 +463,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.USD,
-                beneficaries,
-                false
+                beneficaries
             );
             const producerBeforeBalance = await ethers.provider.getBalance(owner);
             const droplinkedBeforeBalance = await ethers.provider.getBalance(secondUser);
@@ -525,8 +510,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.USD,
-                beneficaries,
-                false
+                beneficaries
             );
             const productId = await shopContract.getProductIdV2(await nftContract.getAddress(), 1);
             await shopContract.connect(fourthUser).requestAffiliate(productId);
@@ -583,8 +567,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             const productId = await shopContract.getProductIdV2(await nftContract.getAddress(), 1);
             await shopContract.connect(fourthUser).requestAffiliate(productId);
@@ -625,8 +608,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.USD,
-                beneficaries,
-                false
+                beneficaries
             );
             const producerBeforeBalance = await ethers.provider.getBalance(owner);
             const droplinkedBeforeBalance = await ethers.provider.getBalance(secondUser);
@@ -680,8 +662,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             const productId = await shopContract.getProductIdV2(await nftContract.getAddress(), 1);
             await shopContract.connect(fourthUser).requestAffiliate(productId);
@@ -727,8 +708,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.NATIVE_TOKEN,
-                beneficaries,
-                false
+                beneficaries
             );
             const producerBeforeBalance = await ethers.provider.getBalance(owner);
             const droplinkedBeforeBalance = await ethers.provider.getBalance(secondUser);
@@ -763,8 +743,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.USD,
-                beneficaries,
-                false
+                beneficaries
             );
 
             await shopContract.connect(owner).mintAndRegister(
@@ -779,8 +758,7 @@ describe("Shop", function () {
                 NFTType.ERC1155,
                 ProductType.DIGITAL,
                 PaymentMethodType.USD,
-                beneficaries,
-                false
+                beneficaries
             );
             const producerBeforeBalance = await ethers.provider.getBalance(owner);
             const droplinkedBeforeBalance = await ethers.provider.getBalance(secondUser);

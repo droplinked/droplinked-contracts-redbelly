@@ -62,8 +62,7 @@ interface IDIP1 {
         NFTType _nftType,
         ProductType _productType,
         PaymentMethodType _paymentType,
-        Beneficiary[] memory _beneficiaries,
-        bool _receiveUSDC
+        Beneficiary[] memory _beneficiaries
     ) external returns (uint256 productId);
     function getProduct(
         uint256 productId
@@ -84,8 +83,7 @@ interface IDIP1 {
         NFTType _nftType,
         ProductType _productType,
         PaymentMethodType _paymentType,
-        Beneficiary[] memory _beneficiaries,
-        bool _recieveUSDC
+        Beneficiary[] memory _beneficiaries
     ) external returns (uint256);
     function unregisterProduct(uint256 productId) external;
     function requestAffiliate(uint256 productId) external returns (uint256);
