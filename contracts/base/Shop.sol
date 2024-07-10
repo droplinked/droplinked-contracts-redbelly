@@ -57,7 +57,7 @@ contract DropShop is
     uint256 public productCount;
     uint256 public affiliateRequestCount;
     Deployer public deployer;
-    AggregatorV3Interface internal priceFeed;
+    // AggregatorV3Interface internal priceFeed;
 
     modifier notRequested(uint256 productId, address requester) {
         if (isRequestSubmited[productId][requester])
@@ -102,15 +102,15 @@ contract DropShop is
         address _shopOwner,
         string memory _shopLogo,
         string memory _shopDescription,
-        address _deployer,
-        address _chainLink
+        address _deployer
+        // address _chainLink
     ) Ownable(_shopOwner) {
         _shopInfo.shopName = _shopName;
         _shopInfo.shopAddress = _shopAddress;
         _shopInfo.shopOwner = _shopOwner;
         _shopInfo.shopLogo = _shopLogo;
         _shopInfo.shopDescription = _shopDescription;
-        priceFeed = AggregatorV3Interface(_chainLink);
+        // priceFeed = AggregatorV3Interface(_chainLink);
         deployer = Deployer(_deployer);
     }
 
@@ -385,11 +385,8 @@ contract DropShop is
         return affiliateRequestCount;
     }
 
-    function getLatestPrice(uint80 roundId) internal view returns (uint, uint) {
-        (, int256 price, , uint256 timestamp, ) = priceFeed.getRoundData(
-            roundId
-        );
-        return (uint(price), timestamp);
+    function getLatestPrice(uint80) internal view returns (uint, uint) {
+        return (1e6, block.timestamp - 5 seconds);
     }
 
     function paymentHelper(

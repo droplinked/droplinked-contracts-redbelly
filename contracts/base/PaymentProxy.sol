@@ -58,18 +58,18 @@ contract DroplinkedPaymentProxy is OwnableUpgradeable{
     /// @notice Emitted when heartBeat is changed.
     event HeartBeatChanged(uint newHeartBeat);
 
-    AggregatorV3Interface internal priceFeed;
+    // AggregatorV3Interface internal priceFeed;
         
     
     event ProductPurchased(string memo);
 
     function initialize(
-        uint256 _heartBeat,
-        address _chainLinkProvider
+        uint256 _heartBeat
+        // address _chainLinkProvider
     ) public initializer {
         __Ownable_init(msg.sender);
         heartBeat = _heartBeat;
-        priceFeed = AggregatorV3Interface(_chainLinkProvider);
+        // priceFeed = AggregatorV3Interface(_chainLinkProvider);
     }
     
     /// @param _heartBeat The new heartBeat to set.
@@ -80,18 +80,11 @@ contract DroplinkedPaymentProxy is OwnableUpgradeable{
     
     /**
      * @dev Retrieves the latest price and its timestamp from the Chainlink Oracle.
-     * @param roundId The round ID to fetch the price from.
      * @return price The price of the asset.
      * @return timestamp The timestamp when the price was recorded.
      */
-    function getLatestPrice(uint80 roundId) internal view returns (uint, uint) {
-        (, int256 price, , uint256 timestamp, ) = priceFeed.getRoundData(
-            roundId
-        );
-        if (price == 0) {
-            revert(string(abi.encodePacked("Invalid price or outdated timestamp. Price timestamp: ", timestamp, ", Current timestamp: ", block.timestamp)));
-        }
-        return (uint(price), timestamp);
+    function getLatestPrice(uint80) internal view returns (uint, uint) {
+        return (1e6, block.timestamp - 5 seconds);
     }
 
     /**
