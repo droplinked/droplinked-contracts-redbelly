@@ -1,21 +1,16 @@
 {
-    "name": "droplinked-contracts-v2",
+    "name": "droplinked-contracts-redbelly",
     "version": "1.0.0",
     "description": "droplinked contracts refactored",
     "main": "index.js",
     "scripts": {
         "compile": "npx hardhat compile",
         "test": "npx hardhat test",
-        "deploy:bscTestnet": "npx hardhat run deploy/deploy.ts --network bscTestnet",
-        "deploy:bsc": "npx hardhat run deploy/deploy.ts --network bsc",
-        "deploy:base": "npx hardhat run deploy/deploy.ts --network base",
-        "deploy:linea": "npx hardhat run deploy/deploy.ts --network linea",
-        "deploy:polygon": "npx hardhat run deploy/deploy.ts --network polygon",
-        "deploy:bedi": "npx hardhat run deploy/deployBedi.ts --network base"
+        "deploy:bscTestnet": "npx hardhat run deploy/deploy.ts --network RedbellyDevNet"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/droplinked/droplinked-contracts-v2.git"
+        "url": "git+https://github.com/droplinked/droplinked-contracts-redbelly.git"
     },
     "keywords": [
         "droplinked",
@@ -27,9 +22,9 @@
     "author": "k3rn3lpanic",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/droplinked/droplinked-contracts-v2/issues"
+        "url": "https://github.com/droplinked/droplinked-contracts-redbelly/issues"
     },
-    "homepage": "https://github.com/droplinked/droplinked-contracts-v2#readme",
+    "homepage": "https://github.com/droplinked/droplinked-contracts-redbelly#readme",
     "devDependencies": {
         "@nomicfoundation/hardhat-toolbox": "5.0.0",
         "hardhat": "^2.22.1"
