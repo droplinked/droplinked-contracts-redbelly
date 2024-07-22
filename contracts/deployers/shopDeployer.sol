@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "../interfaces/IDIP1.sol";
 import "../tokens/DropERC1155.sol";
 import "../base/IDropShop.sol";
@@ -10,7 +9,7 @@ import "../base/IDropShop.sol";
  * @title DropShopDeployer
  * @dev Contract for deploying and managing drop shops and NFT contracts.
  */
-contract DropShopDeployer is Initializable, OwnableUpgradeable {
+contract DropShopDeployer is Ownable {
     event ShopDeployed(address shop, address nftContract);
     event DroplinkedFeeUpdated(uint256 newFee);
     event HeartBeatUpdated(uint256 newHeartBeat);
@@ -24,8 +23,7 @@ contract DropShopDeployer is Initializable, OwnableUpgradeable {
     address public droplinkedWallet;
     uint public shopCount;
 
-    function initialize(uint256 _heartBeat, address _droplinkedWallet, uint256 _droplinkedFee) public initializer {
-        __Ownable_init(msg.sender);
+    constructor(uint256 _heartBeat, address _droplinkedWallet, uint256 _droplinkedFee) Ownable(msg.sender) {
         heartBeat = _heartBeat;
         droplinkedWallet = _droplinkedWallet;
         droplinkedFee = _droplinkedFee;
