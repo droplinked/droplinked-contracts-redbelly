@@ -2,8 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 import "../structs/structs.sol";
 
@@ -47,7 +46,7 @@ interface AggregatorV3Interface {
  * @dev This contract provides a payment proxy system with chainlink price feeds for purchasing products.
  * It supports handling purchases with different payment methods and affiliate tracking.
  */
-contract DroplinkedPaymentProxy is OwnableUpgradeable{
+contract DroplinkedPaymentProxy is Ownable{
     
     /// @dev Error for reporting outdated price data.
     error oldPrice(uint256 priceTimestamp, uint256 currentTimestamp);
@@ -63,11 +62,10 @@ contract DroplinkedPaymentProxy is OwnableUpgradeable{
     
     event ProductPurchased(string memo);
 
-    function initialize(
+    constructor(
         uint256 _heartBeat
         // address _chainLinkProvider
-    ) public initializer {
-        __Ownable_init(msg.sender);
+    ) Ownable(msg.sender) {
         heartBeat = _heartBeat;
         // priceFeed = AggregatorV3Interface(_chainLinkProvider);
     }
@@ -94,7 +92,7 @@ contract DroplinkedPaymentProxy is OwnableUpgradeable{
      * @return The converted value.
      */
     function toNativePrice(uint value, uint ratio) private pure returns (uint) {
-        return (1e24 * value) / ratio;
+        return (1e22 * value) / ratio;
     }
 
     /**
