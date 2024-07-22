@@ -218,7 +218,7 @@ contract DropShop is
             mintData._accepted
         );
         // register the product
-        return
+        uint registeredProductId =
             registerProduct(
                 _tokenId,
                 mintData._nftAddress,
@@ -230,6 +230,8 @@ contract DropShop is
                 mintData._paymentType,
                 mintData._beneficiaries
             );
+        emit ProductMinted(registeredProductId, mintData._amount, msg.sender, mintData._uri);
+        return registeredProductId;
     }
 
     function registerProduct(
@@ -403,7 +405,7 @@ contract DropShop is
     }
 
     function toNativePrice(uint value, uint ratio) private pure returns (uint) {
-        return (1e24 * value) / ratio;
+        return (1e22 * value) / ratio;
     }
 
     function applyPercentage(
