@@ -8,9 +8,9 @@ require("dotenv").config();
 
 const config: HardhatUserConfig = {
   networks: {
-    RedbellyDevNet:{
-      url: "https://rbn-gcp-australia-southeast2-a-0-rh-v2.devnet.redbelly.network:8545",
-      chainId: 152,
+    RedbellyTestNet:{
+      url: "https://governors.testnet.redbelly.network",
+      chainId: 153,
       accounts: [process.env.PRIVATE_KEY as string]
     }
   },
@@ -31,11 +31,11 @@ const config: HardhatUserConfig = {
     },
     customChains:[
       {
-        network: "RedbellyDevNet",
-        chainId: 152,
+        network: "RedbellyTestNet",
+        chainId: 153,
         urls: {
           apiURL: "https://www.oklink.com/api/explorer/v1/contract/verify/async/api/polygonAmoy",
-          browserURL: "https://explorer.devnet.redbelly.network"
+          browserURL: "https://explorer.testnet.redbelly.network"
         },
       }
     ]
