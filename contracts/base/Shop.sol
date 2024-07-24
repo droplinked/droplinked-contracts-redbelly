@@ -230,7 +230,7 @@ contract DropShop is
                 mintData._paymentType,
                 mintData._beneficiaries
             );
-        emit ProductMinted(registeredProductId, mintData._amount, msg.sender, mintData._uri);
+        emit ProductRegistered(registeredProductId, mintData._amount, msg.sender, mintData._uri);
         return registeredProductId;
     }
 
@@ -287,7 +287,6 @@ contract DropShop is
                 );
                 if (!receivedProduct) revert("NFT not received");
             }
-            emit ProductRegistered(_productId, amount, msg.sender);
             return _productId;
         }
 
@@ -317,7 +316,6 @@ contract DropShop is
             );
             if (!receivedProduct) revert("NFT not received");
         }
-        emit ProductRegistered(_productId, amount, msg.sender);
         return _productId;
     }
 

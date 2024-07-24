@@ -18,15 +18,10 @@ interface IDIP1 {
     event ProductRegistered(
         uint256 indexed productId,
         uint256 amount,
-        address indexed owner
-    );
-
-    event ProductMinted(
-        uint256 indexed productId,
-        uint256 amount,
         address indexed owner,
         string uri
     );
+
 
     event ProductUnregistered(uint256 indexed productId, address indexed owner);
     event AffiliateRequested(
